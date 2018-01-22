@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Doctor, Patient, Prescription
+from .models import Doctor, Patient, Prescription, Book
 from django.views.generic import TemplateView, ListView, DetailView
 
 
@@ -32,6 +32,17 @@ class PatientList(ListView):
 
     def get_queryset(self):
         return Patient.objects.filter()[:100]
+
+
+class BookList(ListView):
+    model = Book
+
+    def get_queryset(self):
+        return Book.objects.filter()[:100]
+
+
+class BookDetail(DetailView):
+    model = Book
 
 
 class PrescriptionDetail(DetailView):

@@ -22,7 +22,9 @@ from .views import (
     PatientDetail,
     DoctorDetail,
     PrescriptionDetail,
-    ClinicView
+    ClinicView,
+    BookList,
+    BookDetail
 )
 
 app_name = 'clinic'
@@ -31,7 +33,9 @@ urlpatterns = [
     path('', ClinicView.as_view(), name='dashboard'),
     path('patient/', PatientList.as_view(), name='patient-list'),
     path('prescription/', PrescriptionList.as_view(), name='prescription-list'),
-    path('doctor', DoctorList.as_view(), name='doctor-list'),
+    path('doctor/', DoctorList.as_view(), name='doctor-list'),
+    path('book/', BookList.as_view(), name='book-list'),
+    path('book/<int:pk>/', BookDetail.as_view(), name='book-detail'),
     path('doctor/<int:pk>/', DoctorDetail.as_view(), name='doctor-detail'),
     path('patient/<int:pk>/', PatientDetail.as_view(), name='patient-detail'),
     path('prescription/<int:pk>/', PrescriptionDetail.as_view(), name='prescription-detail'),
