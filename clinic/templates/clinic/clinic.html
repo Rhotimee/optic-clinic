@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} Clinic Dashboard {% endblock title %}
+
+{% block content %}
+
+    <a href="{% url 'clinic:doctor-list' %}">Doctor List</a>
+    <a href="{% url 'clinic:patient-list' %}">Patient List</a>
+    <a href="{% url 'clinic:prescription-list' %}">Prescription Records</a>
+
+{% endblock content %}
