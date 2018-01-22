@@ -15,10 +15,14 @@ Including another URLconf
 """
 
 from django.urls import path, include
+from .views import IndexView, PatientList, PrescriptionList, DoctorList
 
 
 urlpatterns = [
 
+    path('patient', PatientList.as_view(), name='index'),
+    path('prescription', PrescriptionList.as_view(), name='index'),
+    path('doctor', DoctorList.as_view(), name='index'),
 
 ]
 

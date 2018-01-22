@@ -20,12 +20,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from clinic.views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clinic/', include('clinic.urls')),
+    path('', IndexView.as_view(), name='index'),
 
-]
 
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+

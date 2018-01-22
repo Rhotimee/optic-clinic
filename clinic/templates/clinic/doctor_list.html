@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+
+{% block title %} Doctor's List {% endblock %}
+
+{% block content %}
+
+{% if doctor_list %}
+
+{% for doctor in doctor_list %}
+    {{ doctor }} {{ doctor.phone_number }}
+{% endfor %}
+
+{% else %}
+
+    No doctor found
+{% endif %}
+
+{% endblock content %}

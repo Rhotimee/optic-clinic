@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} Prescription List {% endblock %}
+
+{% block content %}
+
+
+{% if prescription_list %}
+
+{% for pres in prescription_list %}
+
+    {{ pres.patient }} {{ pres.doctor }}
+
+{% endfor %}
+
+{% else %}
+    No Prescription Found
+
+{% endif %}
+
+{% endblock content %}

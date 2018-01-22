@@ -1,3 +1,4 @@
+from django.shortcuts import reverse
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -27,6 +28,9 @@ class Patient(models.Model):
     def __str__(self):
         return '{0}, {1}'.format(self.last_name, self.first_name)
 
+    def get_absolute_url(self):
+        return reverse('patient-detail', args=[str(self.id)])
+
 
 class Doctor(models.Model):
     gender_choices = (('male', 'male'),
@@ -52,6 +56,9 @@ class Doctor(models.Model):
     def __str__(self):
         return '{0}, {1}'.format(self.last_name, self.first_name)
 
+    def get_absolute_url(self):
+        return reverse('doctor-detail', args=[str(self.id)])
+
 
 class Prescription(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
@@ -74,4 +81,5 @@ class Prescription(models.Model):
     def __str__(self):
         return self.patient.last_name
 
-
+    def get_absolute_url(self):
+        return reverse('prescription-detail', args=[str(self.id)])
