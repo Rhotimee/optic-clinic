@@ -83,3 +83,21 @@ class Prescription(models.Model):
 
     def get_absolute_url(self):
         return reverse('clinic:prescription-detail', args=[str(self.id)])
+
+
+class Book(models.Model):
+    full_name = models.CharField(max_length=40)
+    email = models.CharField(max_length=40)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                 message=
+                                 "Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
+    date = models.DateField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    message = models.TextField(max_length=200)
+
+    def __str__(self):
+        return self.full_name
+
+    def get_absolute_url(self):
+        return reverse('clinic:book-detail', args=[str(self.id)])
