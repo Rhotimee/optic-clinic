@@ -9,7 +9,9 @@
 
 {% for pres in prescription_list %}
 
-    {{ pres.patient }} {{ pres.doctor }}
+    <a href="{{ pres.get_absolute_url }}">{{ pres.patient }} {{ pres.doctor }}</a>
+
+
 
 {% endfor %}
 

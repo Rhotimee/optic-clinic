@@ -29,7 +29,7 @@ class Patient(models.Model):
         return '{0}, {1}'.format(self.last_name, self.first_name)
 
     def get_absolute_url(self):
-        return reverse('patient-detail', args=[str(self.id)])
+        return reverse('clinic:patient-detail', args=[str(self.id)])
 
 
 class Doctor(models.Model):
@@ -57,7 +57,7 @@ class Doctor(models.Model):
         return '{0}, {1}'.format(self.last_name, self.first_name)
 
     def get_absolute_url(self):
-        return reverse('doctor-detail', args=[str(self.id)])
+        return reverse('clinic:doctor-detail', args=[str(self.id)])
 
 
 class Prescription(models.Model):
@@ -82,4 +82,4 @@ class Prescription(models.Model):
         return self.patient.last_name
 
     def get_absolute_url(self):
-        return reverse('prescription-detail', args=[str(self.id)])
+        return reverse('clinic:prescription-detail', args=[str(self.id)])

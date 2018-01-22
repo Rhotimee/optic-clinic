@@ -2,29 +2,46 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Doctor, Patient, Prescription
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 
 class IndexView(TemplateView):
     template_name = 'index.html'
 
 
+class ClinicView(TemplateView):
+    template_name = 'clinic/clinic.html'
+
+
 class PrescriptionList(ListView):
     model = Prescription
 
     def get_queryset(self):
-        return Prescription.objects.filter()[:50]
+        return Prescription.objects.filter()[:100]
 
 
 class DoctorList(ListView):
     model = Doctor
 
     def get_queryset(self):
-        return Doctor.objects.filter()[:10]
+        return Doctor.objects.filter()[:100]
 
 
 class PatientList(ListView):
     model = Patient
 
     def get_queryset(self):
-        return Patient.objects.filter()[:50]
+        return Patient.objects.filter()[:100]
+
+
+class PrescriptionDetail(DetailView):
+    model = Prescription
+
+
+class PatientDetail(DetailView):
+    model = Patient
+
+
+class DoctorDetail(DetailView):
+    model = Doctor
+

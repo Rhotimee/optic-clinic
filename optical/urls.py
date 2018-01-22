@@ -22,9 +22,11 @@ from django.urls import path, include
 
 from clinic.views import IndexView
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('clinic/', include('clinic.urls')),
+    path('clinic/', include('clinic.urls', namespace='clinic')),
     path('', IndexView.as_view(), name='index'),
 
 

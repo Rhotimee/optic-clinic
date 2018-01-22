@@ -7,12 +7,10 @@
 {% if patient_list %}
 
 {% for patient  in patient_list%}
-{#    <li>#}
-{#        <a href="{{ patient.get_absolute_url }}">{{ patient.first_name }}</a> ({{patient.doctor}})#}
-{#    </li>#}
-{#    #}
+    <li>
+        <a href="{{ patient.get_absolute_url }}">{{ patient }}</a> {{patient.doctor}}
+    </li>
 
-    {{ patient.first_name }}
 {% endfor %}
 
 {% else %}

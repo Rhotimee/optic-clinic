@@ -8,7 +8,8 @@
 {% if doctor_list %}
 
 {% for doctor in doctor_list %}
-    {{ doctor }} {{ doctor.phone_number }}
+    <a href="{{ doctor.get_absolute_url }}"> {{ doctor }} {{ doctor.phone_number }} </a>
+
 {% endfor %}
 
 {% else %}
