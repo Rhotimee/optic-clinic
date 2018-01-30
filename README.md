@@ -17,3 +17,31 @@ Handle bookings
 - Technology Stack
 Python, Django, Bootstrap, Html, CSS, Javascript
 
+#### Usage
+
+1. Create a parent folder
+2. Clone project inside created folder
+```
+$ git clone https://github.com/Rhotimee/optic-clinic.git
+```
+3. Create a virtual environment and activate it
+```
+$ python -m venv venv
+$ source venv\bin\activate
+$ cd pycon
+
+# for window users
+> venv\Scripts\activate
+```
+
+4. Install all the dependencies for the project
+```
+(venv)$ pip install -r requirements.txt  
+```
+
+5. Setup Your database and your enviromental varibles
+
+6. Run Migrations
+```
+python manage.py migrate
+```
