@@ -29,16 +29,48 @@
         </div>
     </section>
 
-{% if book_list %}
 
-{% for book in book_list %}
-    <a href="{{ book.get_absolute_url }}"> {{ book }} {{ book.phone_number }} </a>
 
-{% endfor %}
 
-{% else %}
+    <section id="bookings">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card " style="width:65rem;">
+                    <div class="card-header">
+                        <h4>Bookings</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if book_list %}
+                            {% for book in book_list %}
+                                <tr>
+                                    <td class="scope">{{ forloop.counter }}</td>
+                                    <td>{{ book }}</td>
+                                    <td>{{ book.email }}</td>
+                                    <td>{{ book.phone_number }}</td>
+                                    <td>{{ book.message }}</td>
+                                    <td>{{ book.date }}</td>
+                                    <td><a href="{{ patient.get_absolute_url }}">View profile</a></td>
 
-    No Appointment found
-{% endif %}
+                                </tr>
+                           {% endfor %}
+                            {% else %}
+                                No Bookings found
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% endblock content %}
