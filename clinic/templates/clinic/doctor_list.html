@@ -28,16 +28,43 @@
         </div>
     </section>
 
-{% if doctor_list %}
+    <section id="doctor">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card " style="width:65rem;">
+                    <div class="card-header">
+                        <h4>Doctors</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Phone Number</th>
+                                <th></th>
 
-{% for doctor in doctor_list %}
-    <a href="{{ doctor.get_absolute_url }}"> {{ doctor }} {{ doctor.phone_number }} </a>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if doctor_list %}
+                            {% for doctor in doctor_list %}
+                                <tr>
+                                    <td class="scope">{{ forloop.counter }}</td>
+                                    <td>{{ doctor }}</td>
+                                    <td>{{ doctor.phone_number }}</td>
+                                    <td><a href="{{ doctor.get_absolute_url }}">View profile</a></td>
 
-{% endfor %}
+                                </tr>
+                           {% endfor %}
+                            {% else %}
+                                No doctor found
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% else %}
-
-    No doctor found
-{% endif %}
 
 {% endblock content %}
