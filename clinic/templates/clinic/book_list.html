@@ -3,18 +3,75 @@
 
 {% block title %} Doctor's List {% endblock %}
 
+{% block head %}<i class="fa fa-book"></i> Bookings {% endblock head %}
+
+
 {% block content %}
 
-{% if book_list %}
+        <!-- ACTIONS -->
+    <section id="action" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-3">
+                    <a href="#" class="btn btn-danger btn-block mb-3" data-toggle="modal" data-target=#addPostModal>
+                        <i class="fa fa-plus"></i> Add Booking
+                    </a>
+                </div>
+                <div class="col-md-6 ml-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="inpu-group-btn">
+                            <button class="btn btn-danger"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% for book in book_list %}
-    <a href="{{ book.get_absolute_url }}"> {{ book }} {{ book.phone_number }} </a>
 
-{% endfor %}
 
-{% else %}
 
-    No Appointment found
-{% endif %}
+    <section id="bookings">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card ">
+                    <div class="card-header">
+                        <h4>Bookings</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if book_list %}
+                            {% for book in book_list %}
+                                <tr>
+                                    <td class="scope">{{ forloop.counter }}</td>
+                                    <td>{{ book }}</td>
+                                    <td>{{ book.email }}</td>
+                                    <td>{{ book.phone_number }}</td>
+                                    <td>{{ book.message }}</td>
+                                    <td>{{ book.date }}</td>
+                                    <td><a href="{{ patient.get_absolute_url }}">View profile</a></td>
 
-{% endblock content %}
+                                </tr>
+                           {% endfor %}
+                            {% else %}
+                                No Bookings found
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

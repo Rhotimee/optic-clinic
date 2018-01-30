@@ -2,10 +2,83 @@
 
 {% block title %} Clinic Dashboard {% endblock title %}
 
+{% block head %}<i class="fa fa-gear"></i> Dashboard {% endblock head %}
+
 {% block content %}
 
-    <a href="{% url 'clinic:doctor-list' %}">Doctor List</a>
-    <a href="{% url 'clinic:patient-list' %}">Patient List</a>
-    <a href="{% url 'clinic:prescription-list' %}">Prescription Records</a>
+    <!-- ACTIONS -->
+    <section id="action" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target=#addPostModal>
+                       <i class="fa fa-plus"></i> Add Patient
+                    </a>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target=#addCategoryModal>
+                        <i class="fa fa-plus"></i> Add Doctor
+                     </a>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target=#addUserModal>
+                        <i class="fa fa-plus"></i> Add Prescription
+                    </a>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target=#addUserModal>
+                        <i class="fa fa-plus"></i> Add Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="counts">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card text-center bg-primary text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                            <h3>Patients</h3>
+                            <h1 class="display-4">
+                                <i class="fa fa-users"></i> 6
+                            </h1>
+                            <a href="{% url 'clinic:patient-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                        </div>
+                    </div>
+                <div class="card text-center bg-success text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                        <h3>Doctors</h3>
+                        <h1 class="display-4">
+                            <i class="fa fa-user-md"></i> 5
+                        </h1>
+                        <a href="{% url 'clinic:doctor-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+                        <div class="row justify-content-center">
+                <div class="card text-center bg-warning text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                            <h3>Prescriptions</h3>
+                            <h1 class="display-4">
+                                <i class="fa fa-eye"></i> 6
+                            </h1>
+                            <a href="{% url 'clinic:prescription-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                        </div>
+                    </div>
+                <div class="card text-center bg-danger text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                        <h3>Bookings</h3>
+                        <h1 class="display-4">
+                            <i class="fa fa-book"></i> 3
+                        </h1>
+                        <a href="{% url 'clinic:book-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
 
 {% endblock content %}

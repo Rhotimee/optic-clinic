@@ -2,22 +2,67 @@
 
 {% block title %} Prescription List {% endblock %}
 
+{% block head %}<i class="fa fa-book"></i> Prescriptions {% endblock head %}
+
 {% block content %}
 
+        <!-- ACTIONS -->
+    <section id="action" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-3">
+                    <a href="#" class="btn btn-warning btn-block mb-3" data-toggle="modal" data-target=#addPostModal>
+                        <i class="fa fa-plus"></i> Add Prescription
+                    </a>
+                </div>
+                <div class="col-md-6 ml-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="inpu-group-btn">
+                            <button class="btn btn-warning"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% if prescription_list %}
 
-{% for pres in prescription_list %}
+    <section id="prescription">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card " style="width: 65rem">
+                    <div class="card-header">
+                        <h4>Bookings</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Doctor</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if prescription_list %}
+                            {% for pres in prescription_list %}
+                                <tr>
+                                    <td class="scope">{{ forloop.counter }}</td>
+                                    <td>{{ pres.patient }}</td>
+                                    <td>{{ pres.doctor }}</td>
+                                    <td><a href="{{ patient.get_absolute_url }}">View profile</a></td>
+                                </tr>
+                           {% endfor %}
+                            {% else %}
+                                No Prescription found
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <a href="{{ pres.get_absolute_url }}">{{ pres.patient }} {{ pres.doctor }}</a>
-
-
-
-{% endfor %}
-
-{% else %}
-    No Prescription Found
-
-{% endif %}
 
 {% endblock content %}

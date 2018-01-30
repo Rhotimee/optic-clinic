@@ -2,22 +2,71 @@
 
 {% block title %} Patient List {% endblock %}
 
+{% block head %}<i class="fa fa-users"></i> Patients {% endblock head %}
+
 {% block content %}
 
-{% if patient_list %}
+        <!-- ACTIONS -->
+    <section id="action" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-3">
+                    <a href="#" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target=#addPostModal>
+                        <i class="fa fa-users"></i> Add Patient
+                    </a>
+                </div>
+                <div class="col-md-6 ml-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="inpu-group-btn">
+                            <button class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% for patient  in patient_list%}
-    <li>
-        <a href="{{ patient.get_absolute_url }}">{{ patient }}</a> {{patient.doctor}}
-    </li>
 
-{% endfor %}
+    <section id="patient">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card " style="width:65rem;">
+                    <div class="card-header">
+                        <h4>Patients</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if patient_list %}
+                            {% for patient in patient_list %}
+                                <tr>
+                                    <td class="scope">{{ forloop.counter }}</td>
+                                    <td>{{ patient }}</td>
+                                    <td>{{ patient.email }}</td>
+                                    <td>{{ patient.phone_number }}</td>
+                                    <td><a href="{{ patient.get_absolute_url }}">View profile</a></td>
 
-{% else %}
+                                </tr>
+                           {% endfor %}
+                            {% else %}
+                                No Patient found
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    No Patient found
 
-
-{% endif %}
 
 {% endblock content %}
