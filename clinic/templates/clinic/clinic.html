@@ -25,12 +25,60 @@
                         <i class="fa fa-plus"></i> Add Prescription
                     </a>
                 </div>
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target=#addUserModal>
+                        <i class="fa fa-plus"></i> Add Bookings
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <a href="{% url 'clinic:doctor-list' %}">Doctor List</a>
-    <a href="{% url 'clinic:patient-list' %}">Patient List</a>
-    <a href="{% url 'clinic:prescription-list' %}">Prescription Records</a>
+    <section id="counts">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card text-center bg-primary text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                            <h3>Patients</h3>
+                            <h1 class="display-4">
+                                <i class="fa fa-pencil"></i> 6
+                            </h1>
+                            <a href="{% url 'clinic:patient-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                        </div>
+                    </div>
+                <div class="card text-center bg-success text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                        <h3>Doctors</h3>
+                        <h1 class="display-4">
+                            <i class="fa fa-user-md"></i> 5
+                        </h1>
+                        <a href="{% url 'clinic:doctor-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+                        <div class="row justify-content-center">
+                <div class="card text-center bg-warning text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                            <h3>Prescriptions</h3>
+                            <h1 class="display-4">
+                                <i class="fa fa-pencil"></i> 8
+                            </h1>
+                            <a href="{% url 'clinic:prescription-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                        </div>
+                    </div>
+                <div class="card text-center bg-danger text-white p-3 m-2" style="width: 24rem;">
+                    <div class="card-body">
+                        <h3>Bookings</h3>
+                        <h1 class="display-4">
+                            <i class="fa fa-tags"></i> 3
+                        </h1>
+                        <a href="{% url 'clinic:book-list' %}" class="btn btn-outline-light btn-sm">View</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
 
 {% endblock content %}
