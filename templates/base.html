@@ -10,6 +10,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <!-- Fa -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>{% block title %} Base {% endblock title %}</title>
     <!-- Add additional CSS in static file -->
   {% load static %}
@@ -20,7 +23,9 @@
        <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="{% url 'clinic:dashboard' %}" class="navbar-brand">Optics Clinic</a>
+            <a href="{% url 'clinic:dashboard' %}" class="navbar-brand"><i class="fa fa-eye" aria-hidden="true"></i>
+
+Optics Clinic</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -72,34 +77,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h1><i class="fa fa-gear"></i> Dashboard</h1>
+                    <h1> {% block head %} Dashboard {% endblock head %}</h1>
                 </div>
             </div>
         </div>
     </header>
 
-          <!-- ACTIONS -->
-    <section id="action" class="py-4 mb-4 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 mb-2">
-                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target=#addPostModal>
-                       <i class="fa fa-plus"></i> Add Patient
-                    </a>
-                </div>
-                <div class="col-md-3 mb-2">
-                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target=#addCategoryModal>
-                        <i class="fa fa-plus"></i> Add Doctor
-                     </a>
-                </div>
-                <div class="col-md-3 mb-2">
-                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target=#addUserModal>
-                        <i class="fa fa-plus"></i> Add Prescription
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
         {% block content %}
 

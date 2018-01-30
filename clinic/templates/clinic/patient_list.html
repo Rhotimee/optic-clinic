@@ -2,7 +2,31 @@
 
 {% block title %} Patient List {% endblock %}
 
+{% block head %}<i class="fa fa-users"></i> Patients {% endblock head %}
+
 {% block content %}
+
+        <!-- ACTIONS -->
+    <section id="action" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+            <div class="col-md-3">
+                    <a href="#" class="btn btn-primary btn-block mb-3" data-toggle="modal" data-target=#addPostModal>
+                        <i class="fa fa-users"></i> Add Patient
+                    </a>
+                </div>
+                <div class="col-md-6 ml-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="inpu-group-btn">
+                            <button class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 {% if patient_list %}
 
