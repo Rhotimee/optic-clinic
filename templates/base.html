@@ -20,7 +20,7 @@
        <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
         <div class="container">
-            <a href="index.html" class="navbar-brand">Optics Clinic</a>
+            <a href="{% url 'clinic:dashboard' %}" class="navbar-brand">Optics Clinic</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,16 +30,16 @@
 {#                        <a href="index.html" class="nav-link active">Dashboard</a>#}
 {#                    </li>#}
                     <li class="nav-item px-2">
-                        <a href="posts.html" class="nav-link">Patients</a>
+                        <a href="{% url 'clinic:patient-list' %}" class="nav-link">Patients</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="categories.html" class="nav-link">Doctors</a>
+                        <a href="{% url 'clinic:doctor-list' %}" class="nav-link">Doctors</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="users.html" class="nav-link">Prescriptions</a>
+                        <a href="{% url 'clinic:prescription-list' %}" class="nav-link">Prescriptions</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a href="users.html" class="nav-link">Bookings</a>
+                        <a href="{% url 'clinic:book-list' %}" class="nav-link">Bookings</a>
                     </li>
                 </ul>
 
@@ -78,6 +78,28 @@
         </div>
     </header>
 
+          <!-- ACTIONS -->
+    <section id="action" class="py-4 mb-4 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target=#addPostModal>
+                       <i class="fa fa-plus"></i> Add Patient
+                    </a>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target=#addCategoryModal>
+                        <i class="fa fa-plus"></i> Add Doctor
+                     </a>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target=#addUserModal>
+                        <i class="fa fa-plus"></i> Add Prescription
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
         {% block content %}
 
