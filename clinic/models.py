@@ -60,7 +60,7 @@ class Doctor(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return '{0}, {1}'.format(self.last_name, self.first_name)
+        return '{0} {1}'.format(self.last_name, self.first_name)
 
     def get_absolute_url(self):
         return reverse('clinic:doctor-detail', args=[str(self.id)])

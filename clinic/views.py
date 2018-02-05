@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.views.generic import TemplateView, ListView, DetailView, RedirectView, CreateView
 
 from .models import Doctor, Patient, Prescription, Book
@@ -18,32 +19,72 @@ class PrescriptionList(ListView):
     model = Prescription
     paginate_by = 10
 
-    def get_queryset(self):
-        return Prescription.objects.filter()[:100]
+    def get_queryset(self, *args, **kwargs):
+        qs = Prescription.objects.filter()
+        query = self.request.GET.get("q", None)
+        if query is not None:
+            qs = qs.filter(
+                Q(patient__last_name__icontains=query) |
+                Q(patient__first_name__icontains=query) |
+                Q(patient__other_name__icontains=query) |
+                Q(patient__phone_number__icontains=query) |
+                Q(user__username__icontains=query)
+            )
+        return qs
 
 
 class DoctorList(ListView):
     model = Doctor
     paginate_by = 10
 
-    def get_queryset(self):
-        return Doctor.objects.filter()[:100]
+    def get_queryset(self, *args, **kwargs):
+        qs = Doctor.objects.filter()
+        query = self.request.GET.get("q", None)
+        if query is not None:
+            qs = qs.filter(
+                Q(last_name__icontains=query) |
+                Q(first_name__icontains=query) |
+                Q(other_name__icontains=query) |
+                Q(phone_number__icontains=query) |
+                Q(user__username__icontains=query)
+            )
+        return qs
 
 
 class PatientList(ListView):
     model = Patient
     paginate_by = 10
 
-    def get_queryset(self):
-        return Patient.objects.filter()[:100]
+    def get_queryset(self, *args, **kwargs):
+        qs = Patient.objects.filter()
+        query = self.request.GET.get("q", None)
+        if query is not None:
+            qs = qs.filter(
+                Q(last_name__icontains=query) |
+                Q(first_name__icontains=query) |
+                Q(other_name__icontains=query) |
+                Q(phone_number__icontains=query) |
+                Q(user__username__icontains=query)
+
+            )
+        return qs
 
 
 class BookList(ListView):
     model = Book
     paginate_by = 10
 
-    def get_queryset(self):
-        return Book.objects.filter()[:100]
+    def get_queryset(self, *args, **kwargs):
+        qs = Book.objects.filter()
+        query = self.request.GET.get("q", None)
+        if query is not None:
+            qs = qs.filter(
+                Q(full_name__icontains=query) |
+                Q(email__icontains=query) |
+                Q(message__icontains=query) |
+                Q(phone_number__icontains=query)
+            )
+        return qs
 
 
 class BookDetail(DetailView):
