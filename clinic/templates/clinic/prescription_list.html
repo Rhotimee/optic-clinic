@@ -16,12 +16,14 @@
                     </a>
                 </div>
                 <div class="col-md-6 ml-auto">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <span class="inpu-group-btn">
-                            <button class="btn btn-warning"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </span>
-                    </div>
+                    <form method="GET" action ='{% url "clinic:prescription-list" %}'>
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search" value="{{ request.GET.q }}">
+                            <span class="inpu-group-btn">
+                                <button class="btn btn-warning"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -51,7 +53,7 @@
                                     <td class="scope">{{ forloop.counter }}</td>
                                     <td>{{ pres.patient }}</td>
                                     <td>{{ pres.doctor }}</td>
-                                    <td><a href="{{ patient.get_absolute_url }}">View profile</a></td>
+                                    <td><a href="{{ pres.get_absolute_url }}">View profile</a></td>
                                 </tr>
                            {% endfor %}
                             {% else %}
@@ -59,6 +61,9 @@
                             {% endif %}
                         </tbody>
                     </table>
+                    <div class="card-footer">
+                        {% include "pagination.html" with page=page_obj %}
+                    </div>
                 </div>
             </div>
         </div>

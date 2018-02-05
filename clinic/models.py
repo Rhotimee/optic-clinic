@@ -1,9 +1,14 @@
 from django.shortcuts import reverse
 from django.core.validators import RegexValidator
+from django.conf import settings
 from django.db import models
 
 
+User = settings.AUTH_USER_MODEL
+
+
 class Patient(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     gender_choices = (('male', 'male'),
                       ('female', 'female'))
     first_name = models.CharField(max_length=20)
@@ -23,7 +28,7 @@ class Patient(models.Model):
     email = models.EmailField()
 
     class Meta:
-        ordering = ["-timestamp"]
+        ordering = ['-id']
 
     def __str__(self):
         return '{0}, {1}'.format(self.last_name, self.first_name)
@@ -33,6 +38,7 @@ class Patient(models.Model):
 
 
 class Doctor(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     gender_choices = (('male', 'male'),
                       ('female', 'female'))
     first_name = models.CharField(max_length=20)
@@ -51,16 +57,17 @@ class Doctor(models.Model):
     email = models.EmailField()
 
     class Meta:
-        ordering = ["-timestamp"]
+        ordering = ['-id']
 
     def __str__(self):
-        return '{0}, {1}'.format(self.last_name, self.first_name)
+        return '{0} {1}'.format(self.last_name, self.first_name)
 
     def get_absolute_url(self):
         return reverse('clinic:doctor-detail', args=[str(self.id)])
 
 
 class Prescription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     left_sph = models.CharField(max_length=6, null=True, blank=True)
     left_cyl = models.CharField(max_length=6, null=True, blank=True)
@@ -77,6 +84,9 @@ class Prescription(models.Model):
     updated = models.DateTimeField(auto_now=True)
     date = models.DateField()
     doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.patient.last_name
@@ -95,6 +105,9 @@ class Book(models.Model):
     date = models.DateField()
     timestamp = models.DateTimeField(auto_now_add=True)
     message = models.TextField(max_length=200)
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.full_name

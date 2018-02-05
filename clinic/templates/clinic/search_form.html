@@ -1,0 +1,7 @@
+<form class="navbar-form navbar-left" method="GET" action ='{% url "tasks:list" %}'>
+            <div class="form-group">
+        {#         <label for="q">Search</label>#}
+            <input class="form-control" type="text" name="q" placeholder="Search Tasks" value="{{ request.GET.q }}"/>
+            </div>
+            <input class="btn btn-default" type="submit" value="Search"/>
+</form>

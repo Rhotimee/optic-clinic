@@ -24,7 +24,8 @@ from .views import (
     PrescriptionDetail,
     ClinicView,
     BookList,
-    BookDetail
+    BookDetail,
+    DoctorCreateView, PrescriptionCreateView, PatientCreateView, BookCreateView
 )
 
 app_name = 'clinic'
@@ -39,7 +40,10 @@ urlpatterns = [
     path('doctor/<int:pk>/', DoctorDetail.as_view(), name='doctor-detail'),
     path('patient/<int:pk>/', PatientDetail.as_view(), name='patient-detail'),
     path('prescription/<int:pk>/', PrescriptionDetail.as_view(), name='prescription-detail'),
-
+    path('create-doctor/', DoctorCreateView.as_view(), name='doctor-create'),
+    path('create-prescription/', PrescriptionCreateView.as_view(), name='prescription-create'),
+    path('create-patient/', PatientCreateView.as_view(), name='patient-create'),
+    path('create-book/', BookCreateView.as_view(), name='book-create'),
 
 ]
 
