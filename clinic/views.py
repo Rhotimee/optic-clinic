@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, ListView, DetailView, RedirectView, CreateView
 
 from .models import Doctor, Patient, Prescription, Book
-from django.views.generic import TemplateView, ListView, DetailView, RedirectView
+from .forms import PatientForm, DoctorForm, PrescriptionForm, BookForm
 
 
 class IndexView(RedirectView):
@@ -59,4 +60,46 @@ class PatientDetail(DetailView):
 
 class DoctorDetail(DetailView):
     model = Doctor
+
+
+class PatientCreateView(LoginRequiredMixin, CreateView):
+    model = Patient
+    form_class = PatientForm
+    template_name = 'clinic/create-form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        # messages.success(self.request, 'Your task was created successfully. ')
+        return super(PatientCreateView, self).form_valid(form)
+
+
+class DoctorCreateView(LoginRequiredMixin, CreateView):
+    model = Doctor
+    form_class = DoctorForm
+
+    template_name = 'clinic/create-form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        # messages.success(self.request, 'Your task was created successfully. ')
+        return super(DoctorCreateView, self).form_valid(form)
+
+
+class PrescriptionCreateView(LoginRequiredMixin, CreateView):
+    model = Prescription
+    form_class = PrescriptionForm
+
+    template_name = 'clinic/create-form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        # messages.success(self.request, 'Your task was created successfully. ')
+        return super(PrescriptionCreateView, self).form_valid(form)
+
+
+class BookCreateView(CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'clinic/create-form.html'
+
 

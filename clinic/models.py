@@ -1,9 +1,14 @@
 from django.shortcuts import reverse
 from django.core.validators import RegexValidator
+from django.conf import settings
 from django.db import models
 
 
+User = settings.AUTH_USER_MODEL
+
+
 class Patient(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     gender_choices = (('male', 'male'),
                       ('female', 'female'))
     first_name = models.CharField(max_length=20)
@@ -33,6 +38,7 @@ class Patient(models.Model):
 
 
 class Doctor(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     gender_choices = (('male', 'male'),
                       ('female', 'female'))
     first_name = models.CharField(max_length=20)
@@ -61,6 +67,7 @@ class Doctor(models.Model):
 
 
 class Prescription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     left_sph = models.CharField(max_length=6, null=True, blank=True)
     left_cyl = models.CharField(max_length=6, null=True, blank=True)
