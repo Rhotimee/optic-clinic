@@ -23,7 +23,7 @@ class Patient(models.Model):
     email = models.EmailField()
 
     class Meta:
-        ordering = ["-timestamp"]
+        ordering = ['-id']
 
     def __str__(self):
         return '{0}, {1}'.format(self.last_name, self.first_name)
@@ -51,7 +51,7 @@ class Doctor(models.Model):
     email = models.EmailField()
 
     class Meta:
-        ordering = ["-timestamp"]
+        ordering = ['-id']
 
     def __str__(self):
         return '{0}, {1}'.format(self.last_name, self.first_name)
@@ -78,6 +78,9 @@ class Prescription(models.Model):
     date = models.DateField()
     doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.patient.last_name
 
@@ -95,6 +98,9 @@ class Book(models.Model):
     date = models.DateField()
     timestamp = models.DateTimeField(auto_now_add=True)
     message = models.TextField(max_length=200)
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.full_name

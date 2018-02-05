@@ -59,6 +59,9 @@
                             {% endif %}
                         </tbody>
                     </table>
+                    <div class="card-footer">
+                        {% include "pagination.html" with page=page_obj %}
+                    </div>
                 </div>
             </div>
         </div>

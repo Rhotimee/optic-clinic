@@ -15,6 +15,7 @@ class ClinicView(TemplateView):
 
 class PrescriptionList(ListView):
     model = Prescription
+    paginate_by = 10
 
     def get_queryset(self):
         return Prescription.objects.filter()[:100]
@@ -22,6 +23,7 @@ class PrescriptionList(ListView):
 
 class DoctorList(ListView):
     model = Doctor
+    paginate_by = 10
 
     def get_queryset(self):
         return Doctor.objects.filter()[:100]
@@ -29,6 +31,7 @@ class DoctorList(ListView):
 
 class PatientList(ListView):
     model = Patient
+    paginate_by = 10
 
     def get_queryset(self):
         return Patient.objects.filter()[:100]
@@ -36,6 +39,7 @@ class PatientList(ListView):
 
 class BookList(ListView):
     model = Book
+    paginate_by = 10
 
     def get_queryset(self):
         return Book.objects.filter()[:100]
